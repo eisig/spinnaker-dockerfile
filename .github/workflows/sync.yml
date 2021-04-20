@@ -1,0 +1,53 @@
+name: Docker
+
+on:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+  # Run tests for any PRs.
+  pull_request:
+
+env:
+  # TODO: Change variable to your image's name.
+  IMAGE_NAME: image
+
+jobs:
+
+  # Push image to GitHub Packages.
+  # See also https://docs.docker.com/docker-hub/builds/
+  push:
+
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to GitHub Package Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Push image
+        run: |
+          FROM_PREFIX=us-docker.pkg.dev/spinnaker-community/docker
+          #FROM_PREFIX=harbor.swiftpass.cn/sp_poc
+          TO_PERFIX=docker.pkg.github.com/${{ github.repository }}
+
+          DOCKER_IMAGES=(
+          clouddriver:7.3.3-20210322155326
+          )
+
+
+
+
+          for asset in "${DOCKER_IMAGES[@]}"; do
+                echo $asset
+                docker pull $FROM_PREFIX/$asset
+                docker tag $FROM_PREFIX/$asset $TO_PERFIX/$asset 
+                docker push $TO_PERFIX/$asset  
+          done
