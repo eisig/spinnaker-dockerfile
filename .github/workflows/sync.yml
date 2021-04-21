@@ -41,6 +41,7 @@ jobs:
           TO_PERFIX=docker.pkg.github.com/${{ github.repository }}
 
           DOCKER_IMAGES=(
+          igor:1.15.0-20210208200018
           clouddriver:7.3.3-20210322155326
           deck:3.6.1-20210329201325
           echo:2.16.0-20210208200018
@@ -48,10 +49,7 @@ jobs:
           gate:1.21.0-20210215200018
           orca:2.19.0-20210209140018
           rosco:0.24.0-20210210110018
-          igor:1.15.0-2021020820001
           )
-
-
 
 
           for asset in "${DOCKER_IMAGES[@]}"; do
