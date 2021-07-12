@@ -41,6 +41,7 @@ jobs:
           TO_PERFIX=docker.pkg.github.com/${{ github.repository }}
 
           DOCKER_IMAGES=(
+          halyard:stable
           igor:1.15.0-20210208200018
           clouddriver:7.3.3-20210322155326
           deck:3.6.1-20210329201325
