@@ -16,7 +16,6 @@ gate
 igor
 orca
 rosco
-# halyard:stable
 )
 
 set -x

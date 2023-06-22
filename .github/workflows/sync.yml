@@ -40,4 +40,4 @@ jobs:
         run: |
           FROM_PREFIX=us-docker.pkg.dev/spinnaker-community/docker
           TO_PERFIX=docker.pkg.github.com/${{ github.repository }}
-          sh sync.sh $FROM_PREFIX $TO_PERFIX
+          bash sync.sh $FROM_PREFIX $TO_PERFIX
