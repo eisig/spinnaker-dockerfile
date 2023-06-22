@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: setup-yq
-        uses: chrisdickinson/setup-yq@v1.0.0
+        uses: vegardit/gha-setup-yq@1.0.0
       - uses: actions/checkout@v2
 
       # - name: Login to GitHub Package Registry
