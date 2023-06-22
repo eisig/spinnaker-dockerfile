@@ -40,28 +40,4 @@ jobs:
         run: |
           FROM_PREFIX=us-docker.pkg.dev/spinnaker-community/docker
           TO_PERFIX=docker.pkg.github.com/${{ github.repository }}
-          #1.30.1
-          DOCKER_IMAGES=(
-          echo:2.37.1
-          clouddriver:5.80.2
-          deck:3.13.0
-          fiat:1.37.1
-          front50:2.28.2
-          gate:6.58.1
-          igor:4.11.1
-          orca:8.31.2
-          rosco:1.13.1
-          halyard:stable
-          )
-
-
-          for asset in "${DOCKER_IMAGES[@]}"; do
-                echo $asset
-                docker pull $FROM_PREFIX/$asset
-                docker tag $FROM_PREFIX/$asset $TO_PERFIX/$asset 
-                docker push $TO_PERFIX/$asset  
-          done
-
-          docker pull us-docker.pkg.dev/spinnaker-community/redis/redis-cluster:v2
-          docker tag us-docker.pkg.dev/spinnaker-community/redis/redis-cluster:v2 $TO_PERFIX/redis-cluster:v2
-          docker push $TO_PERFIX/redis-cluster:v2
+          sh sync.sh $FROM_PREFIX $TO_PERFIX
