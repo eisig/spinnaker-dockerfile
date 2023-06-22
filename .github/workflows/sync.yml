@@ -23,6 +23,8 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
+      - name: setup-yq
+        uses: chrisdickinson/setup-yq@v1.0.0
       - uses: actions/checkout@v2
 
       # - name: Login to GitHub Package Registry
