@@ -38,3 +38,7 @@ done
 # docker pull us-docker.pkg.dev/spinnaker-community/redis/redis-cluster:v2
 # docker tag us-docker.pkg.dev/spinnaker-community/redis/redis-cluster:v2 $TO_PERFIX/redis-cluster:v2
 # docker push $TO_PERFIX/redis-cluster:v2
+
+docker pull "$FROM_PREFIX/halyard:stable"
+docker tag "$FROM_PREFIX/halyard:stable" $TO_PERFIX/halyard:stable
+docker push $TO_PERFIX/halyard:stable
